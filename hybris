@@ -1,2 +1,0 @@
-//many to many join on hac
- select {f:code} from {ProductBaseStoreAssignment as i join ProductBaseStoreAssignment2FlagRel as t on {t.SOURCE} = {i:pk} join Flag as f on {t.TARGET} = {f:pk}} where {i:PK}=8796138720877
