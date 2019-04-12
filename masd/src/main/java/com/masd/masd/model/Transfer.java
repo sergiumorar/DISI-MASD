@@ -11,11 +11,12 @@ import java.util.Objects;
 public class Transfer {
     private int id;
     private Double amount;
-    private Account accountByIdSender;
-    private Account accountByIdReceiver;
+    private Account sender;
+    private Account receiver;
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -51,21 +52,21 @@ public class Transfer {
 
     @ManyToOne
     @JoinColumn(name = "idSender", referencedColumnName = "id")
-    public Account getAccountByIdSender() {
-        return accountByIdSender;
+    public Account getSender() {
+        return sender;
     }
 
-    public void setAccountByIdSender(Account accountByIdSender) {
-        this.accountByIdSender = accountByIdSender;
+    public void setSender(Account accountByIdSender) {
+        this.sender = accountByIdSender;
     }
 
     @ManyToOne
     @JoinColumn(name = "idReceiver", referencedColumnName = "id")
-    public Account getAccountByIdReceiver() {
-        return accountByIdReceiver;
+    public Account getReceiver() {
+        return receiver;
     }
 
-    public void setAccountByIdReceiver(Account accountByIdReceiver) {
-        this.accountByIdReceiver = accountByIdReceiver;
+    public void setReceiver(Account accountByIdReceiver) {
+        this.receiver = accountByIdReceiver;
     }
 }

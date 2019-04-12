@@ -14,15 +14,16 @@ public class Account {
     private String name;
     private Double amount;
     private Double spendingLimit;
-    private Currency currencyByIdCurrency;
-    private Type typeByIdType;
-    private User userByIdUser;
-    private Collection<Expenses> expensesById;
-    private Collection<Transfer> transfersById;
-    private Collection<Transfer> transfersById_0;
+    private Currency currency;
+    private Type type;
+    private User user;
+    private Collection<Expenses> expenses;
+    private Collection<Transfer> sender;
+    private Collection<Transfer> receiver;
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -80,58 +81,58 @@ public class Account {
 
     @ManyToOne
     @JoinColumn(name = "idCurrency", referencedColumnName = "id")
-    public Currency getCurrencyByIdCurrency() {
-        return currencyByIdCurrency;
+    public Currency getCurrency() {
+        return currency;
     }
 
-    public void setCurrencyByIdCurrency(Currency currencyByIdCurrency) {
-        this.currencyByIdCurrency = currencyByIdCurrency;
+    public void setCurrency(Currency currencyByIdCurrency) {
+        this.currency = currencyByIdCurrency;
     }
 
     @ManyToOne
     @JoinColumn(name = "idType", referencedColumnName = "id")
-    public Type getTypeByIdType() {
-        return typeByIdType;
+    public Type getType() {
+        return type;
     }
 
-    public void setTypeByIdType(Type typeByIdType) {
-        this.typeByIdType = typeByIdType;
+    public void setType(Type typeByIdType) {
+        this.type = typeByIdType;
     }
 
     @ManyToOne
     @JoinColumn(name = "idUser", referencedColumnName = "id")
-    public User getUserByIdUser() {
-        return userByIdUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserByIdUser(User userByIdUser) {
-        this.userByIdUser = userByIdUser;
+    public void setUser(User userByIdUser) {
+        this.user = userByIdUser;
     }
 
-    @OneToMany(mappedBy = "accountByIdAccount")
-    public Collection<Expenses> getExpensesById() {
-        return expensesById;
+    @OneToMany(mappedBy = "account")
+    public Collection<Expenses> getExpenses() {
+        return expenses;
     }
 
-    public void setExpensesById(Collection<Expenses> expensesById) {
-        this.expensesById = expensesById;
+    public void setExpenses(Collection<Expenses> expensesById) {
+        this.expenses = expensesById;
     }
 
-    @OneToMany(mappedBy = "accountByIdSender")
-    public Collection<Transfer> getTransfersById() {
-        return transfersById;
+    @OneToMany(mappedBy = "sender")
+    public Collection<Transfer> getSender() {
+        return sender;
     }
 
-    public void setTransfersById(Collection<Transfer> transfersById) {
-        this.transfersById = transfersById;
+    public void setSender(Collection<Transfer> transfersById) {
+        this.sender = transfersById;
     }
 
-    @OneToMany(mappedBy = "accountByIdReceiver")
-    public Collection<Transfer> getTransfersById_0() {
-        return transfersById_0;
+    @OneToMany(mappedBy = "receiver")
+    public Collection<Transfer> getReceiver() {
+        return receiver;
     }
 
-    public void setTransfersById_0(Collection<Transfer> transfersById_0) {
-        this.transfersById_0 = transfersById_0;
+    public void setReceiver(Collection<Transfer> transfersById_0) {
+        this.receiver = transfersById_0;
     }
 }

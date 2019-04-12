@@ -17,10 +17,11 @@ public class User {
     private String lastName;
     private String birthDate;
     private String email;
-    private Collection<Account> accountsById;
+    private Collection<Account> accounts;
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -109,12 +110,12 @@ public class User {
         return Objects.hash(id, username, password, firstName, lastName, birthDate, email);
     }
 
-    @OneToMany(mappedBy = "userByIdUser")
-    public Collection<Account> getAccountsById() {
-        return accountsById;
+    @OneToMany(mappedBy = "user")
+    public Collection<Account> getAccounts() {
+        return accounts;
     }
 
-    public void setAccountsById(Collection<Account> accountsById) {
-        this.accountsById = accountsById;
+    public void setAccounts(Collection<Account> accountsById) {
+        this.accounts = accountsById;
     }
 }

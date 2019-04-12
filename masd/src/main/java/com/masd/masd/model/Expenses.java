@@ -13,11 +13,12 @@ public class Expenses {
     private String date;
     private Double amount;
     private String comments;
-    private Category categoryByIdCategory;
-    private Account accountByIdAccount;
+    private Category category;
+    private Account account;
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -75,21 +76,21 @@ public class Expenses {
 
     @ManyToOne
     @JoinColumn(name = "idCategory", referencedColumnName = "id")
-    public Category getCategoryByIdCategory() {
-        return categoryByIdCategory;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryByIdCategory(Category categoryByIdCategory) {
-        this.categoryByIdCategory = categoryByIdCategory;
+    public void setCategory(Category categoryByIdCategory) {
+        this.category = categoryByIdCategory;
     }
 
     @ManyToOne
     @JoinColumn(name = "idAccount", referencedColumnName = "id")
-    public Account getAccountByIdAccount() {
-        return accountByIdAccount;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setAccountByIdAccount(Account accountByIdAccount) {
-        this.accountByIdAccount = accountByIdAccount;
+    public void setAccount(Account accountByIdAccount) {
+        this.account = accountByIdAccount;
     }
 }
