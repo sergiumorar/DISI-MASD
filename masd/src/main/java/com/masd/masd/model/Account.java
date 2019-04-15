@@ -79,7 +79,7 @@ public class Account {
         return Objects.hash(id, name, amount, spendingLimit);
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idCurrency", referencedColumnName = "id")
     public Currency getCurrency() {
         return currency;
@@ -89,7 +89,7 @@ public class Account {
         this.currency = currencyByIdCurrency;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idType", referencedColumnName = "id")
     public Type getType() {
         return type;
@@ -99,7 +99,7 @@ public class Account {
         this.type = typeByIdType;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idUser", referencedColumnName = "id")
     public User getUser() {
         return user;

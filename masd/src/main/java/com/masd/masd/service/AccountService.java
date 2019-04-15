@@ -20,9 +20,13 @@ public class AccountService {
     @Autowired
     private AccountConverter accountConverter;
 
-
-    public void deleteAccount(int accountId) {
-        accountRepository.deleteById(accountId);
+    public boolean deleteAccount(int accountId) {
+        try {
+            accountRepository.deleteById(accountId);
+            return Boolean.TRUE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
     }
 
     public AccountDto updateAccountAmount(int id, double amount) {

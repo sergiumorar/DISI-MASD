@@ -19,9 +19,16 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @DeleteMapping(value = "/accountId")
-    public void deleteAccount(@PathVariable int accountId){
-        accountService.deleteAccount(accountId);
+    @DeleteMapping(value = "/{accountId}")
+    public ResponseEntity deleteAccount(@PathVariable int accountId) {
+        boolean deleted = accountService.deleteAccount(accountId);
+        ResponseEntity responseEntity = null;
+        if (deleted == Boolean.TRUE) {
+            responseEntity = ResponseEntity.status(HttpStatus.OK).build();
+        } else {
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return responseEntity;
     }
 
     @PutMapping(value = "/{id}")
