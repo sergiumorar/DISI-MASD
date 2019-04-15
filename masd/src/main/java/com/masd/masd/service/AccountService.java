@@ -34,6 +34,7 @@ public class AccountService {
         } else {
             final Account persistedAccount = account.get();
             persistedAccount.setAmount(amount);
+            accountRepository.save(persistedAccount);
             return accountConverter.convertModelToDto(persistedAccount);
         }
     }
